@@ -3,9 +3,12 @@ package com.projects.malachosky.perulrc.holders;
 import android.net.Uri;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.projects.malachosky.perulrc.R;
 import com.projects.malachosky.perulrc.model.Note;
 
 /**
@@ -16,20 +19,28 @@ import com.projects.malachosky.perulrc.model.Note;
 
 public class NoteViewHolder extends RecyclerView.ViewHolder {
 
-    private AppCompatImageView mImgView;
+    private final String LOGTAG = NoteViewHolder.class.getSimpleName();
+
+    private ImageView mAttachmentImage;
     private TextView mTitleView;
     private TextView mBodyView;
-    private TextView mDateView;
+    private TextView mTimeView;
 
     public NoteViewHolder(View itemView) {
         super(itemView);
+        this.mAttachmentImage = (ImageView)itemView.findViewById(R.id.note_card_attach_status);
+        this.mTitleView = (TextView)itemView.findViewById(R.id.note_card_title);
+        this.mBodyView = (TextView)itemView.findViewById(R.id.note_card_body);
+        this.mTimeView = (TextView)itemView.findViewById(R.id.note_card_time);
     }
 
     public void updateUI(Note note) {
-        Uri imgURI = note.getImgURI();
-        mImgView.setImageURI(imgURI);
+        if(note.getImgURI() != null) {
+            Log.v(LOGTAG, "URI exists: " + note.getImgURI().toString());
+            mAttachmentImage.setVisibility(View.VISIBLE);
+        }
         mTitleView.setText(note.getTitle());
         mBodyView.setText(note.getBody());
-        mDateView.setText(note.getCurrentDate());
+        mTimeView.setText(note.getCurrentDate());
     }
 }

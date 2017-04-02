@@ -9,7 +9,7 @@ import com.projects.malachosky.perulrc.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private static final int SPLASH_TIME_OUT = 3000;
+    private static final int SPLASH_TIME_OUT = 1800;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

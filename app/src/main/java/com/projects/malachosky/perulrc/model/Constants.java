@@ -1,10 +1,20 @@
 package com.projects.malachosky.perulrc.model;
 
+import android.os.Environment;
+
+import java.io.File;
+
 /**
- * Created by Malac on 3/28/2017.
- *
- * @author: Malac
+ * @author Malac
+ * @since 3/28/2017
  */
 
-public class Constants {
+public final class Constants {
+
+    public enum DataAction {
+        DeleteAll, SaveNote, DeleteNote
+    }
+
+    public static final String sdCard = Environment.getExternalStorageDirectory() + File.separator;
+    public static final String mainFolder = sdCard + "PeruNotes";
 }

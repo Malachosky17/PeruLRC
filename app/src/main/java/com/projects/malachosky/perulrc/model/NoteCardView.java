@@ -12,9 +12,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Created by Malac on 3/26/2017.
- *
- * @author: Malac
+ * @author Malac
+ * @since 3/26/2017
  */
 
 public class NoteCardView extends CardView {
@@ -29,6 +28,13 @@ public class NoteCardView extends CardView {
         super(context);
     }
 
+    /**
+     * Full constructor of NoteCardView
+     * @param context - Context of calling activity
+     * @param title - Title of the card
+     * @param body - A short body sneak peek of the full journal entry
+     * @param imgURI - The first image of the associate Note
+     */
     public NoteCardView(Context context, String title, String body, Uri imgURI) {
         super(context);
         setImgView(imgURI);

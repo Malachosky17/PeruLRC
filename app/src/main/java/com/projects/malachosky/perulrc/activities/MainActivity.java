@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.projects.malachosky.perulrc.R;
+import com.projects.malachosky.perulrc.model.Constants;
+import com.projects.malachosky.perulrc.tasks.DataTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if(id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         } else if(id == R.id.action_notes) {
             Intent intent = new Intent(this, NotesContainerActivity.class);
             startActivity(intent);

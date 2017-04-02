@@ -1,28 +1,42 @@
 package com.projects.malachosky.perulrc.model;
 
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Created by Malac on 3/26/2017.
- *
- * @author: Malac
+ * @author Malac
+ * @since 3/26/2017
  */
 
-public class Note {
+public class Note implements Parcelable{
 
+    private Constants.DataAction action = Constants.DataAction.SaveNote;
     private Uri mImgURI;
     private String mTitle;
     private String mBody;
     private String mCreatedDate;
 
+    /**
+     * Constructing new Note
+     * @param pTitle - Title of the Note
+     * @param pBody - Journal entry of the Note
+     */
     public Note(String pTitle, String pBody) {
         this.mTitle = pTitle;
         this.mBody = pBody;
         setCurrentDate();
+    }
+
+    /**
+     * Used to DeleteAll of the notes in the file system
+     */
+    public Note() {
+        this.action = Constants.DataAction.DeleteAll;
     }
 
     public String getTitle() {
@@ -31,6 +45,11 @@ public class Note {
     public void setTitle(String title) {
         this.mTitle = title;
     }
+
+    public String getFileName() {
+        return mTitle + ".txt";
+    }
+
     public String getBody() {
         return mBody;
     }
@@ -53,5 +72,46 @@ public class Note {
     }
     public void updateCurrentDate() {
         setCurrentDate();
+    }
+    public void setAction(Constants.DataAction action) {
+        this.action = action;
+    }
+    public Constants.DataAction getAction() {
+        return action;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mTitle);
+        dest.writeString(mBody);
+        dest.writeString(mCreatedDate);
+        dest.writeValue(mImgURI);
+    }
+
+    public static final Parcelable.Creator<Note> CREATOR = new Parcelable.Creator<Note>() {
+        public Note createFromParcel(Parcel in) {
+            return new Note(in);
+        }
+
+        public Note[] newArray(int size) {
+            return new Note[size];
+        }
+    };
+
+    /**
+     * Private constructor used to make a parcelable Note
+     * @param in - Parcel object to set the member variables
+     */
+    private Note(Parcel in) {
+        mTitle = in.readString();
+        mBody = in.readString();
+        mCreatedDate = in.readString();
+        mImgURI = (Uri) in.readValue(Uri.class.getClassLoader());
     }
 }
