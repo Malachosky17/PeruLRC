@@ -17,4 +17,6 @@ public final class Constants {
 
     public static final String sdCard = Environment.getExternalStorageDirectory() + File.separator;
     public static final String mainFolder = sdCard + "PeruNotes";
+
+    public static final String SHARED_PREF = "private_prefs";
 }

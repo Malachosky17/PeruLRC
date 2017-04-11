@@ -3,7 +3,6 @@ package com.projects.malachosky.perulrc.activities;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;

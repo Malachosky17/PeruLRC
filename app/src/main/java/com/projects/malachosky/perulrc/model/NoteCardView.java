@@ -1,7 +1,6 @@
 package com.projects.malachosky.perulrc.model;
 
 import android.content.Context;
-import android.media.Image;
 import android.net.Uri;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.CardView;
