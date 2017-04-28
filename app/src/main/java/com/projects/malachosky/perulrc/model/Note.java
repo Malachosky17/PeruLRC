@@ -1,6 +1,7 @@
 package com.projects.malachosky.perulrc.model;
 
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,11 +16,13 @@ import java.util.Locale;
 
 public class Note implements Parcelable{
 
+    private Note replacedNote;
     private Constants.DataAction action = Constants.DataAction.SaveNote;
     private Uri mImgURI;
     private String mTitle;
     private String mBody;
     private String mCreatedDate;
+    private CountDownTimer timer;
 
     /**
      * Constructing new Note
@@ -30,6 +33,14 @@ public class Note implements Parcelable{
         this.mTitle = pTitle;
         this.mBody = pBody;
         setCurrentDate();
+    }
+
+    /**
+     * Used to show an undo filler in the NotesContainerActivity
+     * @param pTitle
+     */
+    public Note(String pTitle) {
+        this.mTitle = pTitle;
     }
 
     /**
@@ -79,7 +90,18 @@ public class Note implements Parcelable{
     public Constants.DataAction getAction() {
         return action;
     }
-
+    public CountDownTimer getTimer() {
+        return timer;
+    }
+    public void setTimer(CountDownTimer timer) {
+        this.timer = timer;
+    }
+    public Note getReplacedNote() {
+        return replacedNote;
+    }
+    public void setReplacedNote(Note replacedNote) {
+        this.replacedNote = replacedNote;
+    }
 
     @Override
     public int describeContents() {
@@ -113,5 +135,11 @@ public class Note implements Parcelable{
         mBody = in.readString();
         mCreatedDate = in.readString();
         mImgURI = (Uri) in.readValue(Uri.class.getClassLoader());
+    }
+
+    @Override
+    public String toString() {
+        return String.format(Locale.ENGLISH, "Title: %s\n" +
+                                             "URI: %s", mTitle, getFileName());
     }
 }

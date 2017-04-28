@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">Peru LRC</string>
-    <string name="title_activity_main">Schedule</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="section_format">Day: %1$d</string>
-    <string name="title_notes_container">My Notes</string>
 
     <!-- This section contains action items in App Menu -->
     <string name="action_notes">Notes</string>
@@ -11,19 +7,229 @@
     <string name="action_full_view">Full View</string>
 
     <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Settings</string>
     <string name="pref_header_general">General</string>
     <string name="pref_title_delete_notes">Clear All Notes</string>
     <string name="pref_night_mode">Night Mode</string>
 
-    <!-- Strings related to UI -->
+    <!-- Strings related to UI nodes -->
     <string name="btn_cancel">Cancel</string>
     <string name="btn_save">Save</string>
     <string name="btn_edit">Edit&#8230;</string>
+
+    <!-- Strings related to Notes -->
     <string name="hint_note_title">Please enter title&#8230;</string>
     <string name="hint_note_journal_body">Journal entry area&#8230;</string>
     <string name="permissions_not_accepted">Read/Write permissions were denied.</string>
+    <string name="title_notes_container">My Notes</string>
 
-    <string name="full_screen_close">Close</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- The following strings are implemented in SelectionDetailedActivity and MainActivity -->
+    <string name="title_activity_main">Schedule</string>
+    <string name="section_format">Day: %1$d</string>
+    <string name="title_activity_selection_detailed">Detailed View</string>
+
+    <string name="description_day_one">
+        "Upon arrival you will be welcomed by our representative who will transfer you to your hotel "
+        "in Lima's Miraflores District. The hotel will be accommodated with a full bar and restaurant. "
+        "The hotel will also be surrounded by vast markets. You should also check out the Larcomar "
+        "Shopping Center located on the boardwalk in from of JW Marriot Hotel."
+        "&lt;br /&gt;&lt;br /&gt;When you are finished shopping and want to be adventurous, you have the "
+        "choices of paragliding over the Pacific Ocean bike riding around Lima's cultural districts or "
+        "go for a cliff-top walk that offer fabulous views of the Pacific Ocean."
+    </string>
+
+    <string name="description_day_two">
+        "In the morning, you will visit the Bohemian district of Barranco, where streets are lined with traditional casonas "
+        "(colonial-style houses), here you will find art galleries and handcraft such 'Dedalo'.&lt;br /&gt;&lt;br /&gt;"
+        "Then, you will head to downtown for a walking tour. Founded in 1535 by the Spanish conquistador, Francisco "
+        "Pizarro, it was from Lima that all Spanish territories in South America were governed. Few cities at that time could "
+        "rival Lima's power, wealth and opulence. However its glory days ended in 1746 when the city was virtually destroyed "
+        "by an earthquake. Many of the colonial buildings were rebuilt and you will get a first-hand look at several of them on "
+        "the tour. The striking Plaza Mayor (Plaza de Armas), flanked by some of the most important buildings in town such "
+        "as the cathedral, the huge Government Palace and the Archbishop's Palace, constitutes the heart of the city. You will "
+        "visit the nearby San Francisco Monastery, with its catacombs containing some 70,000 human remains. Next we will "
+        "visit the Central market where we will take a walking tour. The market has a huge variety of fresh produce on offer "
+        "including fruits, vegetables and even Guinea pigs. You will have the opportunity to try some local Peruvian fruits and "
+        "street food. Then to China town which is close to the Market. The tour will finish in Lima main square. "
+        "Then, you will head to Callao district for a graffiti tour. You will spend a different afternoon walking through the "
+        "recognized streets of the neighborhood; you will see art, gastronomy, history, graffiti and local culture. Lunch is "
+        "included in a local restaurant.&lt;br /&gt;&lt;br /&gt;"
+        "Then, you will return to the hotel. Rest of the afternoon will be free.&lt;br /&gt;"
+        "Dinner is included in a local restaurant.&lt;br /&gt;"
+        "Overnight - El Tambo Peru 2 or similar: www.eltamboperu.com&lt;br /&gt;"
+        "Meals included: Breakfast, Lunch and Dinner"
+    </string>
+
+    <string name="description_day_three">
+        "You will travel 46 kms outside of Lima to visit this very interesting project. This family owned agro-ecological farm of "
+        "3.8 hectares, was created as an alternative to conventional agriculture through the implementation of ecological practices. "
+        "The farm supports small local producers on a system based in the integration of agriculture, livestock "
+        "and fruit trees production it follows principles of productive diversification applying techniques of ecological "
+        "agriculture, ecological management of soils and ecological pest management. Return to Lima in the afternoon."
+    </string>
+
+    <string name="description_day_four">
+        "Today you will visit a local university in Lima and interact with a group of students."
+    </string>
+
+    <string name="description_day_five">
+        "At proper time you will be transfer to the airport for your departure to Cusco. At the arrival in Cusco, our "
+        "representative will you transfer to your hotel in Cusco. Lunch will be delivered at the hotel.(Tourist Menu). "
+        "&lt;br /&gt;&lt;br /&gt;"
+        "13:00 PM CITY TOUR + RUINS"
+        "&lt;br /&gt;&lt;br /&gt;"
+        "Get to know the city of Cusco, an UNESCO World Cultural Heritage site and possessor of a style all its own. The tour "
+        "begins at the Koricancha Temple, an old Incan palace and main center for the worship of the sun god, Inti. Once the "
+        "Spanish conquered Peru, the Dominican order built a lovely church over this temple's foundations: the church of "
+        "Santo Domingo, that is still there today. Your next destination is the Main Square, and then the adventure continues "
+        "at the Sacsayhuaman Fortress built of enormous stone blocks expertly shaped by the Incas. It is strategically located "
+        "at the top of a hill overlooking the city of Cuzco. The tour continues with visits to three archaeological sites: Qenko, "
+        "Puca-Pucara, and Tambomachay, important religious and administrative centers for the Incas. Finally you will visit "
+        "the art workshop named Inkas Expresion, that presents artists working on silver pieces and painting in wood. It is an "
+        "ideal place for the ones that like Andean art."
+        "&lt;br /&gt;&lt;br /&gt;"
+        "Dinner is included at the hotel (Tourist Menu)&lt;br /&gt;"
+        "Overnight - Imperial Cusco Hotel: http://www.imperialcuscohotel.org/&lt;br /&gt;"
+        "Meals included: Breakfast, Lunch and Dinner"
+    </string>
+
+    <string name="description_day_six">
+        "At proper time you will transferred to the train station. Awaiting you today is by far and away one of the high points in "
+        "world tourism: Machu Picchu. Your adventure starts on a train ride to the city of Aguas Calientes, where you will "
+        "disembark and then board a bus that drives you to the actual Machu Picchu archaeological site, where you will "
+        "definitely have an experience you will never forget. The tour includes every nook and cranny of this New 7 Wonder of "
+        "the World and UNESCO World Cultural Heritage site; afterwards, there is some free time for you to explore the site "
+        "on your own, to relax or to meditate. At proper time you will go to Aguas Calientes town to have lunch which is "
+        "included, after lunch you will have to go the train station in order to departure to Ollantaytambo, at the arrival to the "
+        "train station you will be transfer to your hotel in Cusco.&lt;br /&gt;&lt;br /&gt;"
+        "Dinner is included at the hotel (Tourist Menu)&lt;br /&gt;"
+        "Overnight - Imperial Cusco Hotel: http://www.imperialcuscohotel.org/&lt;br /&gt;"
+        "Meals included: Breakfast, Lunch and Dinner"
+    </string>
+
+    <string name="description_day_seven">
+        "At proper time, you will be driven by bus to Puno, so you can enjoy the wonderful scenery on the way. First you will "
+        "visit Andahuaylillas, a town where a precious church from the 17th century boasts an amazing organ decorated with "
+        "angels and cherubs. After this you will visit Racchi ruins, known as 'The Temple of God Wiracocha'. The last stop "
+        "before arriving to Puno will be La Raya, highest point on the road between Cusco and Puno from where we will get "
+        "excellent photo opportunities. After this you will arrive to Puno.&lt;br /&gt;"
+        "Lunch in a local restaurant is included.&lt;br /&gt;"
+        "Dinner is included at the hotel (Tourist Menu)&lt;br /&gt;"
+        "Overnight - Hacienda Puno www.hhp.com.pe&lt;br /&gt;"
+        "Meals included: Breakfast, Lunch and Dinner&lt;br /&gt;"
+    </string>
+
+    <string name="description_day_eight">
+        "The trip begins early as you head out of the city of Puno towards the Uros Islands, whose inhabitants are hunters "
+        "and gatherers and handicraft vendors as well as descendants of the first altiplano residents. After an hour on these "
+        "particular islands learning about the life of the residents there, you will sail over to Amantani Island, located at an "
+        "elevation of 4150 meters and whose culture can be traced back to Pre-Incan times. Upon arrival, you will be "
+        "welcomed by the family at whose home you will be staying. You will eat lunch there and then visit the Pacha Tata "
+        "ceremonial center, famous for its mystical energy. You will lodge on the island for the night.&lt;br /&gt;&lt;br /&gt;"
+        "Overnight with local families.&lt;br /&gt;"
+        "Meals included: Breakfast, Lunch and Dinner&lt;br /&gt;"
+    </string>
+
+    <string name="description_day_nine">
+        "After your breakfast, you will take an hour boat ride to Taquile Island, whose highest mountains are 3950 m. The "
+        "culture on the island is old, dating back to Pre-Incan times. The islanders still live according to the traditions and "
+        "beliefs of their ancestors and are world renowned for their lovely outfits and incredible textiles. In fact, UNESCO has "
+        "declared the textile art of Taquile Island as a Masterpiece of the Oral and Intangible Heritage of Humanity. After "
+        "sharing some time with the islanders and standing in awe of the lake setting, you will return to the city of Puno."
+        "&lt;br /&gt;&lt;br /&gt;"
+        "Dinner is included at the hotel (Tourist Menú)&lt;br /&gt;"
+        "Overnight - Hacienda Puno www.hhp.com.pe&lt;br /&gt;"
+        "Meals included: Breakfast, Lunch and Dinner&lt;br /&gt;"
+    </string>
+
+    <string name="description_day_ten">
+        "Transport to airport to take your flight to Lima. End of Services.&lt;br /&gt;&lt;br /&gt;"
+        "Meals included: Breakfast"
+    </string>
+
+    <string name="big_title_day">"Day"</string>
+
+    <string name="short_description_one">
+        "Welcome to Lima!&lt;br /&gt;&lt;br /&gt;"
+        "Enjoy the amenities in and around your hotel.&lt;br /&gt;"
+        "This includes:&lt;br /&gt;"
+        "-shops&lt;br /&gt;"
+        "-bars&lt;br /&gt;"
+        "-restaurants&lt;br /&gt;"
+        "-ocean front"
+    </string>
+    <string name="short_description_two">
+        "Have fun in the Bohemian district of Barranco! Venture to downtown Lima. Enjoy the "
+        "culture and markets with fresh produce where you have the opportunity to buy vegetables "
+        "and even try Guinea Pig!"
+    </string>
+    <string name="short_description_three">
+        "After a relaxing drive to a small farm 'Casa Blanca', walk about the agro-ecological "
+        "farm of 1 hectare. Help the locals tend to the farm and bask in their agricultural world! "
+        "Here you can try some fresh vegetables, especially green lima beans or 'habas'."
+    </string>
+    <string name="short_description_four">
+        "Greet yourself to some fellow Peru students at the private college 'Universidad San Ignacio "
+        "del Loyola'. Try discussing these topics:&lt;br /&gt;"
+        "-Peru's History&lt;br /&gt;"
+        "-Education System and College Life&lt;br /&gt;"
+        "-Local traditions, music and customs"
+    </string>
+    <string name="short_description_five">
+        "Get to know the city of Cusco!&lt;br /&gt;&lt;br /&gt;"
+        "This is an UNESCO World Cultural Heritage site and processor of a style all its own. "
+        "Visit Koricancha Temple where the sun god, Inti, is worshipped. Then travel over to Cusco "
+        "where you will have dinner and end your day."
+    </string>
+    <string name="short_description_six">
+        "Train ride to Machu Picchu!&lt;br /&gt;&lt;br /&gt;"
+        "At the top of every world traveler's list is this breath taking destination. "
+        "Listed under one of the seven wonders of the world as well as another UNESCO "
+        "World Cultural Heritage site, Machu Picchu offers vast sight seeing throughout "
+        "the region."
+    </string>
+    <string name="short_description_seven">
+        "Cusco to Puno: Lake Titicaca&lt;br /&gt;&lt;br /&gt;"
+        "Enjoy the bus tour from Cusco to Puno, where you will be able to see more breath taking "
+        "sites and visit small shops and other markets along the way. Look out for wildlife on the "
+        "way. Alpacas, guinea pigs and birds inhabit the vast landscape."
+    </string>
+    <string name="short_description_eight">
+        "Lake Titicaca: Uros Islands and Amanti Island&lt;br /&gt;&lt;br /&gt;"
+        "The trip begins heading from Puno to the world's highest lake, Lake Titicaca."
+        "Elevation reaches 4130m (~13,500ft). Air will be thin so take a deep breath and emerge "
+        "yourself in adventures and conversations with the local tribes. Here you will lodge overnight "
+        "with a family.&lt;br /&gt;"
+        "Remembering:&lt;br /&gt;"
+        "-May be shared drop toilets&lt;br /&gt;"
+        "-May not have showers, if they do, they are cold&lt;br /&gt;"
+        "-If you are cold, ask for more blankets&lt;br /&gt;"
+        "-Small gifts are highly appreciated"
+    </string>
+    <string name="short_description_nine">
+        "Lake Titicaca: Taquile Island&lt;br /&gt;&lt;br /&gt;"
+        "After breakfast, rest on the boat ride over to Taquile Island to meet more indigenous tribes. "
+        "The islanders still live according to the traditions and beliefs of their ancestors, so be respectful. "
+        "After sharing some time with the islanders, we will return to you to your stay in Puno."
+    </string>
+    <string name="short_description_ten">
+        "Puno to Lima to Florida: Last Day!&lt;br /&gt;&lt;br /&gt;"
+        "Today you will have an early start to catch your flight back to Lima, departing from the Juliaca Airport "
+        "near Puno. We will fly to Lima, vist the Pueblo Libre district, founded in 1557. After lunch we will visit "
+        "the National Museum of Archaeology and Anthropology of Peru. Engulf all the information you can, because you "
+        "will depart on an international flight back to Ft. Lauderdale Airport in Florida."
+    </string>
+
+    <!-- Titles for  -->
+    <string name="subtitle_day_one">"Welcome to Lima!"</string>
+    <string name="subtitle_day_two">"Lima Artistic: Bohemian Barranco"</string>
+    <string name="subtitle_day_three">"Lima's organic agro-ecological farm"</string>
+    <string name="subtitle_day_four">"Visit Local University"</string>
+    <string name="subtitle_day_five">"Here we come, Cusco!"</string>
+    <string name="subtitle_day_six">"LRC takes on Machu Picchu"</string>
+    <string name="subtitle_day_seven">"Venture to Puno"</string>
+    <string name="subtitle_day_eight">"Lake Titicaca: Amanti Island"</string>
+    <string name="subtitle_day_nine">"Lake Titicaca: Taquile Island"</string>
+    <string name="subtitle_day_ten">"Back to Lima!"</string>
 
 </resources>

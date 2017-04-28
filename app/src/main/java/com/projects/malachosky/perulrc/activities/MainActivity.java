@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +24,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.projects.malachosky.perulrc.R;
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+
+    private int viewPageNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,24 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                //Adding one to position to resemble the day number
+                viewPageNumber = position + 1;
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //Not implemented
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                //Not implemented
+            }
+        });
     }
 
     @Override
@@ -78,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, NotesContainerActivity.class);
             startActivity(intent);
         } else if(id == R.id.action_full_view) {
-            Intent intent = new Intent(this, FullScreenNoteView.class);
+            Intent intent = new Intent(this, SelectionDetailedActivity.class);
+            intent.putExtra("view_page_number", viewPageNumber);
             startActivity(intent);
         }
 
@@ -93,9 +119,17 @@ public class MainActivity extends AppCompatActivity {
          * The fragment argument representing the section number for this
          * fragment.
          */
+
+        private String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.INTERNET};
+
         private final String LOGTAG = PlaceholderFragment.class.getSimpleName();
         private static final String ARG_SECTION_NUMBER = "section_number";
-        private final int MY_READ_EXTERNAL_PERMISSION = 111;
+        private final int PERMISSION_CODE = 333;
+
+        private ImageView imageView;
+        private TextView textView_sectionNumber;
+        private WebView sectionWebView;
+        private RatingBar ratingBar;
         private SharedPreferences sharedPreferences;
 
         public PlaceholderFragment() {
@@ -114,16 +148,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            sharedPreferences = getContext().getSharedPreferences(Constants.SHARED_PREF, MODE_PRIVATE);
+        }
+
+        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            int sectionNum = getArguments().getInt(ARG_SECTION_NUMBER);
+
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            sharedPreferences = getContext().getSharedPreferences(Constants.SHARED_PREF, MODE_PRIVATE);
+            textView_sectionNumber = (TextView) rootView.findViewById(R.id.section_label);
+            imageView = (ImageView) rootView.findViewById(R.id.section_image);
+            sectionWebView = (WebView) rootView.findViewById(R.id.section_webview);
+            ratingBar = (RatingBar) rootView.findViewById(R.id.ratingBar);
+            customizeNodes(sectionNum);
+
             if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_READ_EXTERNAL_PERMISSION);
+                        permissions, PERMISSION_CODE);
             } else {
                 sharedPreferences.edit().putBoolean("permissions", true).apply();
             }
@@ -135,21 +179,100 @@ public class MainActivity extends AppCompatActivity {
             super.onResume();
         }
 
+
+        /**
+         * TODO: Check for all permissions needed to make permission requests simple.
+         * @param requestCode
+         * @param permissions
+         * @param grantResults
+         */
         @Override
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
             switch(requestCode) {
-                case MY_READ_EXTERNAL_PERMISSION:
-                    if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        Log.v(LOGTAG, "Permissions were granted!");
-                        sharedPreferences.edit().putBoolean("permissions", true).apply();
-                    } else {
-                        sharedPreferences.edit().putBoolean("permissions", false).apply();
-                        Log.e(LOGTAG, "Permission was denied!");
-                        Log.e(LOGTAG, "Stopping the read/write funtionality.");
+                case PERMISSION_CODE:
+                    boolean externalStoragePermission = grantResults[0]==PackageManager.PERMISSION_GRANTED;
+                    boolean internalStoragePermission = grantResults[1]==PackageManager.PERMISSION_GRANTED;
+                    boolean internetPermission = grantResults[2]==PackageManager.PERMISSION_GRANTED;
+                    if(externalStoragePermission && internalStoragePermission && internetPermission) {
+                        Log.v(LOGTAG, "All permissions were granted by the user.");
                     }
                     break;
             }
+        }
+
+        /**
+         * Customize each fragment to represent the day in Peru
+         * @param sectionNum -> pass in the day
+         */
+        private void customizeNodes(int sectionNum) {
+            //TODO; Fix delay bug with the rating stars.
+            String webData = "";
+            int rating = 0;
+            switch(sectionNum) {
+                case 1:
+                    webData = getString(R.string.short_description_one);
+                    imageView.setImageResource(R.drawable.lima_city);
+                    ratingBar.setRating(sharedPreferences.getInt("day_1_rating", rating));
+                    break;
+                case 2:
+                    webData = getString(R.string.short_description_two);
+                    imageView.setImageResource(R.drawable.bohemian_district);
+                    ratingBar.setRating(sharedPreferences.getInt("day_2_rating", rating));
+                    break;
+                case 3:
+                    webData = getString(R.string.short_description_three);
+                    imageView.setImageResource(R.drawable.agro_ecological_produce);
+                    ratingBar.setRating(sharedPreferences.getInt("day_3_rating", rating));
+                    break;
+                case 4:
+                    webData = getString(R.string.short_description_four);
+                    imageView.setImageResource(R.drawable.university_students);
+                    ratingBar.setRating(sharedPreferences.getInt("day_4_rating", rating));
+                    break;
+                case 5:
+                    webData = getString(R.string.short_description_five);
+                    imageView.setImageResource(R.drawable.puno_city);
+                    ratingBar.setRating(sharedPreferences.getInt("day_5_rating", rating));
+                    break;
+                case 6:
+                    webData = getString(R.string.short_description_six);
+                    imageView.setImageResource(R.drawable.peru_background);
+                    ratingBar.setRating(sharedPreferences.getInt("day_6_rating", rating));
+                    break;
+                case 7:
+                    webData = getString(R.string.short_description_seven);
+                    imageView.setImageResource(R.drawable.puno_adventure);
+                    ratingBar.setRating(sharedPreferences.getInt("day_7_rating", rating));
+                    break;
+                case 8:
+                    webData = getString(R.string.short_description_eight);
+                    imageView.setImageResource(R.drawable.lake_titicaca);
+                    ratingBar.setRating(sharedPreferences.getInt("day_8_rating", rating));
+                    break;
+                case 9:
+                    webData = getString(R.string.short_description_nine);
+                    imageView.setImageResource(R.drawable.faux_taquile_island);
+                    ratingBar.setRating(sharedPreferences.getInt("day_9_rating", rating));
+                    break;
+                case 10:
+                    webData = getString(R.string.short_description_ten);
+                    imageView.setImageResource(R.drawable.lima_last_day);
+                    ratingBar.setRating(sharedPreferences.getInt("day_10_rating", rating));
+                    break;
+                default:
+                    break;
+            }
+            textView_sectionNumber.setText(getString(R.string.section_format, sectionNum));
+            sectionWebView.loadData("<html>" +
+                    "<style>" +
+                    "body {background-color: #272828;}" +
+                    "h2 {color: #ffffff}" +
+                    "</style>" +
+                    "<h2>" +
+                    webData +
+                    "</h2>" +
+                    "</html>", "text/html", null);
         }
     }
 
@@ -177,6 +300,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
+            viewPageNumber = position;
             switch (position) {
                 case 0:
                     return "Day 1";

@@ -5,16 +5,22 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebView;
 
 import com.projects.malachosky.perulrc.R;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
+ * @deprecated
+ * @since 4/23/2017
  */
 public class FullScreenNoteView extends AppCompatActivity {
+
+    private static final String LOGTAG = FullScreenNoteView.class.getSimpleName();
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -33,7 +39,8 @@ public class FullScreenNoteView extends AppCompatActivity {
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
-    private View mContentView;
+    private View mOuterFrameView;
+    private WebView mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -92,12 +99,15 @@ public class FullScreenNoteView extends AppCompatActivity {
         setContentView(R.layout.activity_full_screen_note_view);
 
         mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+        mOuterFrameView = findViewById(R.id.fullscreen_outer_frame);
+        mOuterFrameView.setOnClickListener(view -> toggle());
 
+        mControlsView = findViewById(R.id.fullscreen_content_controls);
+        mContentView = (WebView)findViewById(R.id.fullscreen_webview);
+        mContentView.loadData("<html> <body>Hello World!</body> </html>", "text/html", null);
 
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(view -> toggle() );
+        mContentView.setOnClickListener(view -> toggle());
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
@@ -117,6 +127,7 @@ public class FullScreenNoteView extends AppCompatActivity {
     }
 
     private void toggle() {
+        Log.v(LOGTAG, "Toggle was executed!");
         if (mVisible) {
             hide();
         } else {

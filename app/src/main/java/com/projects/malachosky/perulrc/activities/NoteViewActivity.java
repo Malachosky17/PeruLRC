@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,7 +26,6 @@ public class NoteViewActivity extends AppCompatActivity implements View.OnClickL
     private EditText mBodyText;
     private Button mBtn_Cancel;
     private Button mBtn_Save_Edit;
-
     private String mInitTitle;
 
     @Override
@@ -35,6 +35,7 @@ public class NoteViewActivity extends AppCompatActivity implements View.OnClickL
 
         Bundle b = getIntent().getExtras();
         mNote = b.getParcelable(Note.class.getCanonicalName());
+        Log.v(LOGTAG, mNote.toString());
     }
 
     @Override
@@ -48,19 +49,21 @@ public class NoteViewActivity extends AppCompatActivity implements View.OnClickL
         mInitTitle = mNote.getFileName();
         initializeTextFields();
         initializeButtons();
+
+        //Don't auto-initiate the keyboard when the screen appears
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.btn_cancel:
-                    finish();
+                finish();
                 break;
             case R.id.btn_edit_save:
                 String text = mBtn_Save_Edit.getText().toString();
                 boolean edit = false;
                 if(text.contentEquals(getString(R.string.btn_save))) {
-                    //TODO: Save the Note with DataTask
                     mNote.setTitle(mEditTextTitle.getText().toString());
                     mNote.setBody(mBodyText.getText().toString());
                     mBtn_Save_Edit.setText(getString(R.string.btn_edit));
@@ -79,6 +82,9 @@ public class NoteViewActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Renames the file if the existing note card's title was changed.
+     */
     private void renameFile() {
         File from = new File(Constants.mainFolder, mInitTitle);
         if(from.exists()) {
@@ -89,6 +95,9 @@ public class NoteViewActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Initializes the body and title text fields within the activity layout
+     */
     private void initializeTextFields() {
         mEditTextTitle = (EditText)findViewById(R.id.edit_title);
         mBodyText = (EditText)findViewById(R.id.edit_body);
@@ -98,6 +107,9 @@ public class NoteViewActivity extends AppCompatActivity implements View.OnClickL
         mBodyText.setText(mNote.getBody());
     }
 
+    /**
+     * Initializes the buttons to be shown and connected to NoteViewActivity.OnClickListener
+     */
     private void initializeButtons() {
         mBtn_Cancel = (Button)findViewById(R.id.btn_cancel);
         mBtn_Save_Edit = (Button)findViewById(R.id.btn_edit_save);

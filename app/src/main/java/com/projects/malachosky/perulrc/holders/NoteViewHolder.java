@@ -1,7 +1,5 @@
 package com.projects.malachosky.perulrc.holders;
 
-import android.net.Uri;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +18,8 @@ import com.projects.malachosky.perulrc.model.Note;
 public class NoteViewHolder extends RecyclerView.ViewHolder {
 
     private final String LOGTAG = NoteViewHolder.class.getSimpleName();
+
+    //TODO: Add the card views instead of individual items here, then create card views in XML
 
     private ImageView mAttachmentImage;
     private TextView mTitleView;
