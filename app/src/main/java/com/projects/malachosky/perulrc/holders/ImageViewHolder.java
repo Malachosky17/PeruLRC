@@ -33,7 +33,7 @@ public class ImageViewHolder extends RecyclerView.ViewHolder {
         task.execute();
     }
 
-    public class DecodeBitmapTask extends AsyncTask<Void, Void, Bitmap> {
+    private class DecodeBitmapTask extends AsyncTask<Void, Void, Bitmap> {
         private final WeakReference<ImageView> imageViewWeakReference;
         private NoteImage image;
 

@@ -40,10 +40,11 @@
     <style name="NotesContainerTheme" parent="DarkThemeNoActionBar">
     </style>
     
-    <style name="SettingsTheme" parent="AppTheme">
+    <style name="SettingsTheme" parent="@style/Theme.AppCompat.Dialog">
         <item name="android:textColorPrimary">#ffff</item>
+        <item name="android:subtitleTextColor">#ffff</item>
         <item name="android:colorPrimary">@color/darkColorPrimaryDark</item>
-        <item name="android:windowBackground">@color/black_overlay</item>
+        <item name="android:windowBackground">@color/cardview_dark_background</item>
     </style>
 
 </resources>

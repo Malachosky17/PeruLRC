@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -118,7 +119,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private void initializePreferences() {
             Preference preference = findPreference("clear_notes");
             preference.setOnPreferenceClickListener(pref -> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.SettingsTheme);
                 builder.setMessage("Are you sure you want to delete all of your notes?")
                         .setTitle("Clear All Notes");
                 builder.setPositiveButton("Yes", (dialogInterface, i) -> {
